@@ -34,18 +34,29 @@ const fetchCountryAndNeighbors = async (fname) => {
 };
 
 //// method that accepts the code (2 characters) of a language, find out what countries are speaking it
-
-const fetchLanguage = async (lang) => {
-  const countryLanguage = await fetchCountries(`https://restcountries.com/v2/lang/${lang}`);
-  const languageSpoken = await countryLanguage.map(
-    (country) => console.log(country.name)
-  )
+const fetchLanguage = async (code) => {
+  const countryLanguage = await fetchCountries(countriesAPI);
+  const languageSpoken = await countryLanguage.filter((country) => {
+    return country.languages.some((language) => language.iso639_1 === code);
+  });
+  console.log(languageSpoken);
+  languageSpoken.map((lang) => console.log(lang.name));
 };
 
-/// method that accepts a population number (in millions), find out what countries have more people than that
+//alternative method
 
-fetchLanguage("fi");
+
+// const fetchLanguage = async (lang) => {
+//   const countryLanguage = await fetchCountries(`https://restcountries.com/v2/lang/${lang}`);
+//   const languageSpoken = await countryLanguage.map(
+//     (country) => console.log(country.name)
+//   )
+// };
+// fetchLanguage("fi");
+
+
+
+/// method that accepts a population number (in millions), find out what countries have more people than that
+fetchLanguage("en");
 fetchCountryAndNeighbors("Finland");
 fetchCountryByUserInput("Suomi");
-
-
