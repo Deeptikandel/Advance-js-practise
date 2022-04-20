@@ -54,16 +54,17 @@ const fetchLanguage = async (code) => {
 // fetchLanguage("fi");
 
 /// method that accepts a population number (in millions), find out what countries have more people than that
-const fetchPopulation = async () => {
+const fetchPopulation = async (population) => {
   const countryPopulation = await fetchCountries(countriesAPI);
   countryPopulation.filter((country) => {
-    if (country.population >= 1000000) {
+    if (country.population >= population) {
       return console.log(`${country.name} :${country.population}`);
     }
   });
 };
 
-fetchPopulation();
+fetchPopulation(1000000);
 fetchLanguage("en");
 fetchCountryAndNeighbors("Finland");
 fetchCountryByUserInput("Suomi");
+
