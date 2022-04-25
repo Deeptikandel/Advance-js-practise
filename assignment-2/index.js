@@ -45,13 +45,14 @@ const fetchLanguage = async (code) => {
 
 //alternative method
 
-// const fetchLanguage = async (lang) => {
-//   const countryLanguage = await fetchCountries(`https://restcountries.com/v2/lang/${lang}`);
-//   const languageSpoken = await countryLanguage.map(
-//     (country) => console.log(country.name)
-//   )
-// };
-// fetchLanguage("fi");
+const fetchLanguages = async (lang) => {
+  const countryLanguage = await fetchCountries(
+    `https://restcountries.com/v2/lang/${lang}`
+  );
+  const languageSpoken = await countryLanguage.map((country) =>
+    console.log(country.name)
+  );
+};
 
 /// method that accepts a population number (in millions), find out what countries have more people than that
 const fetchPopulation = async (population) => {
@@ -65,6 +66,6 @@ const fetchPopulation = async (population) => {
 
 fetchPopulation(1000000);
 fetchLanguage("en");
+fetchLanguages("fi");
 fetchCountryAndNeighbors("Finland");
 fetchCountryByUserInput("Suomi");
-
